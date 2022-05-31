@@ -1,0 +1,44 @@
+{% extends "app_heroku/components/base.html" %}
+{% load static %}
+
+
+{% block head %}{% endblock head %}
+
+{% block title %}
+    TodoDetail
+{% endblock title %}
+
+{% block navbar %}
+    {% include 'app_heroku/components/navbar.html' %}
+{% endblock navbar %}
+
+{% block main %}
+<main class="flex-shrink-0 bg-light">
+    <div class="detail-menu">
+
+        <div class="container text-center py-3 m-5">
+          <div class="row">
+            <div class="col">
+              <h1 class="find-block mb-3 fw-bold">Detail Task</h1>
+
+
+              <h5 class="display-5 ">{{ todo.title }}</h5>
+              <p class="lead mb-4">{{ todo.description }}</p>
+
+                <a class="text-decoration-none btn btn-outline-secondary m-1 p-2" style="width: 100px" href="{% url 'my_todo_list' %}">
+                    <i class="fa-solid fa-hand-back-point-left"></i>
+                                    Back
+                </a>
+
+            </div>
+          </div>
+        </div>
+    </div>
+
+</main>
+{% endblock main %}
+
+
+{% block footer %}
+  {% include 'app_heroku/components/footer.html' %}
+{% endblock footer %}

@@ -1,0 +1,59 @@
+{% extends "app_heroku/components/base.html" %}
+{% load static %}
+
+
+{% block head %}{% endblock head %}
+
+{% block title %}
+    TodoCreate
+{% endblock title %}
+
+{% block navbar %}
+    {% include 'app_heroku/components/navbar.html' %}
+{% endblock navbar %}
+
+{% block main %}
+
+<main class="flex-shrink-0 container py-4">
+  <div class="d-flex text-center">
+      <form
+          action="{% url 'my_todo_create' %}"
+          method="POST"
+          enctype="multipart/form-data"
+          target="_self"
+          class="form-control form-control-lg mx-auto p-1 m-1"
+          style="width: 350px"
+      >
+      {% csrf_token %}
+          <div class="menu-form">
+            <div class="container">
+              <h4 class="write-block text-center py-2 mb-2">CreateTodo</h4>
+              <form class="needs-validation" novalidate>
+
+                <div class="form-floating p-1">
+                  <input type="text" class="form-control" id="floatingInput" placeholder="Enter name task" name="title">
+                  <label for="floatingInput">Enter a task name:</label>
+                </div>
+                <div class="form-floating p-1">
+                  <input type="text" class="form-control" id="floatingPassword" placeholder="Enter a task description:" name="description">
+                  <label for="floatingPassword">Enter a task description:</label>
+                </div>
+
+                <button class="w-100 btn btn-lg btn-primary m-1" type="submit">Submit</button>
+                <button class="w-100 btn btn-lg btn-outline-danger m-1" type="reset">Reset</button>
+                <p class="mt-5 mb-3 text-muted">© 2022</p>
+
+              </form>   
+            </div>
+          </div>
+      </form>  
+
+  </div>
+</main>
+
+{% endblock main %}
+
+
+{% block footer %}
+  {% include 'app_heroku/components/footer.html' %}
+{% endblock footer %}

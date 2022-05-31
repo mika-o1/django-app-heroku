@@ -1,0 +1,102 @@
+{% extends "app_heroku/components/base.html" %}
+{% load static %}
+
+{% block head %}{% endblock head %}
+
+{% block title %}
+    TodoList
+{% endblock title %}
+
+{% block navbar %}
+    {% include 'app_heroku/components/navbar.html' %}
+{% endblock navbar %}
+
+{% block main %}
+<main class="flex-shrink-0 bg-light">
+
+    <div class="todolist-block py-2">
+      <div class="container">
+        <h3 class="heading-text text-center py-3 mb-5">TodoList</h3>
+          <div>
+            {% include 'app_heroku/components/paginator.html' %}
+          </div>
+            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 justify-content-center">
+
+                {% if not page %}
+                    <div class="text-center">
+                        No data!
+                    </div>
+                {% else %}
+                    {% for i in page %}
+
+                    <div class="d-flex">
+                        {% if i.is_completed %}
+                        <div class="card text-dark mb-3" style="max-width: 18rem;">
+                          <div class="card-header bg-success text-white text-center"><h4>Task</h4> </div>
+                              <div class="card-body">
+                                <h5 class="card-title">{{i.title}}</h5>
+                              </div>
+                                <div class="text-center">
+                                    <a class="text-decoration-none btn btn-outline-primary m-1 p-2" style="width: 100px" href="{% url 'my_todo_detail' i.id %}">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                        More
+                                    </a>
+                                    <a class="text-decoration-none btn btn-outline-danger m-1 p-2" style="width: 100px" href="{% url 'my_todo_delete' i.id %}">
+                                        <i class="fa-solid fa-ban"></i>
+                                        Delete
+                                    </a>
+                                    <a class="text-decoration-none btn btn-outline-warning m-1 p-2" style="width: 100px" href="{% url 'my_todo_update_status' i.id %}">
+                                        <i class="fa-solid fa-arrow-right-arrow-left m-1 p-1"></i>
+                                        Toggle status
+                                    </a>
+                                    <a class="text-decoration-none btn btn-outline-success m-1 p-2" style="width: 100px" href="{% url 'my_todo_change_data' i.id %}">
+                                        <i class="fa-solid fa-pen"></i>
+                                        Change task
+                                    </a>
+                                </div>
+                        </div>
+                        {% else %}
+                        <div class="card text-dark mb-3" style="max-width: 18rem;">
+                          <div class="card-header bg-danger text-white text-center"><h4>Task</h4> </div>
+                              <div class="card-body">
+                                <h5 class="card-title">{{i.title}}</h5>
+                              </div>
+                                <div class="text-center">
+                                    <a class="text-decoration-none btn btn-outline-primary m-1 p-2" style="width: 100px" href="{% url 'my_todo_detail' i.id %}">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                        More
+                                    </a>
+                                    <a class="text-decoration-none btn btn-outline-danger m-1 p-2" style="width: 100px" href="{% url 'my_todo_delete' i.id %}">
+                                        <i class="fa-solid fa-ban"></i>
+                                        Delete
+                                    </a>
+                                    <a class="text-decoration-none btn btn-outline-warning m-1 p-2" style="width: 100px" href="{% url 'my_todo_update_status' i.id %}">
+                                        <i class="fa-solid fa-arrow-right-arrow-left m-1 p-1"></i>
+                                        Toggle status
+                                    </a>
+                                    <a class="text-decoration-none btn btn-outline-success m-1 p-2" style="width: 100px" href="{% url 'my_todo_change_data' i.id %}">
+                                        <i class="fa-solid fa-pen"></i>
+                                        Change task
+                                    </a>
+                                </div>
+                          </div>
+                        {% endif %}
+                        </div>
+                  {% endfor %}
+                {% endif %}
+            </div>
+                  <div>
+                      {% include 'app_heroku/components/paginator.html' %}
+                  </div>
+      </div>
+    </div>
+</main>
+{% endblock main %}
+
+
+{% block footer %}
+  {% include 'app_heroku/components/footer.html' %}
+{% endblock footer %}
+
+
+

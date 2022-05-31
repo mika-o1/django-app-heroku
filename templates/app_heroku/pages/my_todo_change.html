@@ -1,0 +1,50 @@
+{% extends "app_heroku/components/base.html" %}
+{% load static %}
+
+
+{% block head %}{% endblock head %}
+
+{% block title %}
+    TodoChange
+{% endblock title %}
+
+{% block navbar %}
+    {% include 'app_heroku/components/navbar.html' %}
+{% endblock navbar %}
+
+{% block main %}
+<main class="flex-shrink-0 bg-light container">
+    <div class="d-flex text-center">
+
+    <form
+        action="{% url 'my_todo_change_data' todo.id %}"
+        method="POST"
+        enctype="multipart/form-data"
+        target="_self"
+        class="form-control form-control-lg mx-auto"
+        style="width: 400px"
+    >
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal m-1 p-1">Edit the created task {{ todo.title }}: {{ todo.id }}</h1>
+
+        <div class="form-floating m-1 p-1">
+          <input type="text" class="form-control" id="floatingInput" placeholder="enter name here" name="title" value="{{ todo.title }}">
+          <label for="floatingInput">Enter a task name:</label>
+        </div>
+        <div class="form-floating m-1 p-1">
+          <input type="text" class="form-control" id="floatingPassword" placeholder="enter description here" name="description" value="{{ todo.description }}">
+          <label for="floatingPassword">Enter a task description:</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary p-1 m-1" type="submit">Submit</button>
+        <button class="w-100 btn btn-lg btn-outline-danger p-1 m-1" type="reset">Reset</button>
+        <p class="mt-5 mb-3 text-muted">©2022</p>
+      </form>
+    </div>
+</main>
+{% endblock main %}
+
+
+{% block footer %}
+  {% include 'app_heroku/components/footer.html' %}
+{% endblock footer %}
