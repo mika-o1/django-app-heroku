@@ -5,10 +5,6 @@ from . import models
 from . import utils
 
 
-def my_index(request):
-    return render(request, 'app_heroku/pages/my_index.html')
-
-
 def my_home(request):
     return render(request, 'app_heroku/pages/my_home.html')
 
@@ -17,8 +13,8 @@ def my_about(request):
     return render(request, 'app_heroku/pages/my_about.html')
 
 
-def my_origin_home(request):
-    return render(request, 'app_heroku/pages/my_origin_home.html')
+def my_login(request):
+    return render(request, 'app_heroku/pages/my_login.html')
 
 
 def my_todo_detail(request, todo_id):
@@ -29,7 +25,7 @@ def my_todo_detail(request, todo_id):
     return render(request, 'app_heroku/pages/my_todo_detail.html', context)
 
 
-def todo_list(request):
+def my_todo_list(request):
     objects = models.Task.objects.all()
     count_object_on_one_page = 2
     current_page_from_request_parametr = request.GET.get('page')
