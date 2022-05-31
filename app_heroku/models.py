@@ -12,6 +12,7 @@ class Task(models.Model):
     # id = AutoIncrement
 
     # Символьный тип данных (<= 500 символов)
+    objects = None
     title = models.CharField(
         primary_key=False,
         unique=False,
