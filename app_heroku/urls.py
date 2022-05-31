@@ -10,7 +10,7 @@ urlpatterns = [
     path('my_about/', my_about, name="my_about"),
 
     path('my_todo_detail/<int:todo_id>/', my_todo_detail, name="my_todo_detail"),
-    path(route='my_todo_list/', view=logic.my_todo_list, name="my_todo_list"),
+    path(route='todo_list/', view=logic.todo_list, name="todo_list"),
     path(route='my_todo_create/', view=logic.my_todo_create, name="my_todo_create"),
     path(route='my_todo_delete/<int:todo_id>/', view=logic.my_todo_delete, name="my_todo_delete"),
     path(route='my_todo_update_status/<int:todo_id>/', view=logic.my_todo_update_status, name="my_todo_update_status"),

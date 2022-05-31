@@ -29,7 +29,7 @@ def my_todo_detail(request, todo_id):
     return render(request, 'app_heroku/pages/my_todo_detail.html', context)
 
 
-def my_todo_list(request):
+def todo_list(request):
     objects = models.Task.objects.all()
     count_object_on_one_page = 2
     current_page_from_request_parametr = request.GET.get('page')
