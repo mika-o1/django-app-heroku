@@ -1,5 +1,6 @@
 {% extends "app_heroku/components/base.html" %}
 {% load static %}
+{% load extras %}
 
 {% block head %}{% endblock head %}
 
@@ -12,11 +13,15 @@
 {% endblock navbar %}
 
 {% block main %}
-<main class="flex-shrink-0 bg-light">
+<main class="flex-shrink-0">
 
     <div class="todolist-block py-2">
       <div class="container">
         <h3 class="heading-text text-center py-3 mb-5">TodoList</h3>
+          <div>
+                <li>{% upper_case 'Количество созданных задач:' %} {{todo_count}}</li>
+          </div>
+
           <div>
             {% include 'app_heroku/components/paginator.html' %}
           </div>
