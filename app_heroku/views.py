@@ -3,6 +3,71 @@ from django.urls import reverse
 from django.core.paginator import Paginator
 from . import models
 from . import utils
+from django.conf import settings as my_settings
+import openpyxl
+from openpyxl.utils import get_column_letter
+import datetime
+
+
+def external_excel():
+    def create_new_excel():
+        workbook = openpyxl.Workbook()
+        # grab the active worksheet
+        worksheet = workbook.active
+        # Data can be assigned directly to cells
+        worksheet['A1'] = 42
+        # Rows can also be appended
+        worksheet.append([1, 2, 3])
+        # Python types will automatically be converted
+        worksheet['A2'] = datetime.datetime.now()
+        # Save the file
+        workbook.save("./static/temp/sample.xlsx")
+
+    def load_excel():
+        path = "./static/temp/sample.xlsx"
+        workbook = openpyxl.load_workbook(path)
+        worksheet = workbook.active
+        max_num_rows = worksheet.max_row
+
+        global_list = []
+        for num in range(1, max_num_rows):
+            local_list = []
+            for char in "ABC":
+                local_list.append(worksheet[f'{char}{num}'].value)
+            global_list.append(local_list)
+
+    def update_excel():
+        path = "./static/temp/sample.xlsx"
+        workbook = openpyxl.load_workbook(path)
+        worksheet = workbook.active
+        max_num_rows = worksheet.max_row
+
+        global_list = []
+        for num in range(1, max_num_rows):
+            local_list = []
+            for char in "ABC":
+                local_list.append(worksheet[f'{char}{num}'].value)
+            global_list.append(local_list)
+
+        workbook = openpyxl.Workbook()
+        # grab the active worksheet
+        worksheet = workbook.active
+
+        index_i = 0
+        for i in global_list:
+            index_i += 1
+            index_j = 0
+            for j in i:
+                index_j += 1
+                worksheet[f'{get_column_letter(index_i)}{index_j}'] = str(j) + " Bogdan"
+
+        # Save the file
+        workbook.save("./static/temp/sample.xlsx")
+
+    def beatiful_new_excel():  # TODO нужно реализовать !!!!!!!!!!!
+        pass
+
+    update_excel()
 
 
 def my_home(request):

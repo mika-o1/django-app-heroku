@@ -37,7 +37,7 @@
                     <div class="d-flex">
                         {% if i.is_completed %}
                         <div class="card text-dark mb-3" style="max-width: 18rem;">
-                          <div class="card-header bg-success text-white text-center"><h4>Task</h4> </div>
+                          <div class="card-header bg-success text-white text-center"><h4>#{{ forloop.counter }} Task</h4> </div>
                               <div class="card-body">
                                 <h5 class="card-title">{{i.title}}</h5>
                               </div>
@@ -62,7 +62,7 @@
                         </div>
                         {% else %}
                         <div class="card text-dark mb-3" style="max-width: 18rem;">
-                          <div class="card-header bg-danger text-white text-center"><h4>Task</h4> </div>
+                          <div class="card-header bg-danger text-white text-center"><h4>#{{ forloop.counter }} Task</h4> </div>
                               <div class="card-body">
                                 <h5 class="card-title">{{i.title}}</h5>
                               </div>
