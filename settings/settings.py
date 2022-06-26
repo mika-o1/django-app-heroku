@@ -67,7 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                'app_heroku.context_processors.todo_count',
+                'app_heroku.context_processors.task_count',
             ],
         },
     },

@@ -1,13 +1,11 @@
 from django.urls import path
-from .views import my_home, my_about, my_todo_detail
+from .views import my_home, my_todo_detail
 from . import views as logic
 
-# тут только "маршруты" - адрес страницы
+
 urlpatterns = [
     path('', my_home, ""),
     path('my_home/', my_home, name="my_home"),
-    path('my_about/', my_about, name="my_about"),
-    path('my_login/', my_about, name="my_login"),
 
     path(route='my_todo_list/', view=logic.my_todo_list, name="my_todo_list"),
     path(route='my_todo_create/', view=logic.my_todo_create, name="my_todo_create"),

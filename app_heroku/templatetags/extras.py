@@ -1,34 +1,45 @@
 from django import template
+import datetime
 
 register = template.Library()
 
 
-@register.filter(is_safe=True)
-def my_filter(value):
-    return str(value).strip()[:-2] + "new new"
+@register.simple_tag(takes_context=True)
+def upper_case(context, text: str):
+    try:
+        return str(text).upper()
+    except Exception as error:
+        print("error simple_tag text_upper_case: ", error)
+        return ""
+
+
+@register.simple_tag(takes_context=True)
+def access_tag(context, slug: str):
+    try:
+        return True
+    except Exception as error:
+        print("error simple_tag access_tag: ", error)
+        return True
 
 
 @register.simple_tag
-def upper_case(value):
-    return str(value).upper()
+def current_time(format_string):
+    return datetime.datetime.now().strftime(format_string)
 
 
-@register.simple_tag
-def beautiful_number(value):
-    str1 = str(value)
-
-    if len(str1) > 3:
-        return str(value)[0:-5:1] + " " + str(value)[-5::1]
-
-    if len(str1) > 6:
-        return str(value)[0:-5:1] + " " + str(value)[-5::1] + " " + str(value)[-8::1]
+@register.filter(name='cut_string')
+def cut_string(value, arg: int):
+    """Removes all values of arg from the given string"""
+    return f"{value[0:arg]}..."
 
 
-@register.simple_tag
-def custom_ceil(number, ndigits):
-    return round(number=number, ndigits=ndigits)
+@register.filter(name='cut')
+def cut(value, arg):
+    """Removes all values of arg from the given string"""
+    return value.replace(arg, '')
 
 
-@register.simple_tag
-def split_string_to_list(string: str, separator: str):
-    return str(string).split(separator)
+@register.filter(name='lower')
+def lower(value):  # Only one argument.
+    """Converts a string into all lowercase"""
+    return value.lower()

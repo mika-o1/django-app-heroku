@@ -1,9 +1,11 @@
 from . import models
 
 
-def todo_count(request):
-    dict1 = dict(todo_count=0)
+def task_count(request):
+    try:
+        count = models.Task.objects.all().count()
+    except Exception as error:
+        count = 0
+        print(f"context_processors.py task_count {error}")
 
-    dict2 = {}
-    dict2["todo_count"] = models.Task.objects.all().count
-    return dict2
+    return dict(task_count=count)

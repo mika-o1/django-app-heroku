@@ -13,12 +13,28 @@
     <link rel="stylesheet" href="{% static 'fa/css/all.css' %}">
     {% block head %}{% endblock head %}
 </head>
-<body class="d-flex flex-column h-100" style="min-height: 100vh;">
+<body class="d-flex flex-column h-100 custom_body_1" style="min-height: 100vh;">
     {% block navbar %}{% endblock navbar %}
-    <div class="flex-shrink-0" style="min-height: 80vh;">
-        {% block main %}тело страницы{% endblock main %}
-    </div>
+    <main class="flex-shrink-0">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="container-fluid">
+                    <div class="text-center">
+                        <h1 class="display-5 fw-bold fst-italic">{% block header %}{% endblock header %}</h1>
+                        <div class="col-lg-6 mx-auto">
+                            <p class="lead mb-4">{% block description %}{% endblock description %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <main class="container p-0 custom_main_1">
+                {% block main %}{% endblock main %}
+            </main>
+        </div>
+    </main>
     {% block footer %}{% endblock footer %}
+    {% block prescript %}{% endblock prescript %}
     <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+    {% block postscript %}{% endblock postscript %}
 </body>
 </html>

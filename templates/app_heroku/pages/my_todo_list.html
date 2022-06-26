@@ -18,18 +18,24 @@
     <div class="todolist-block py-2">
       <div class="container">
         <h3 class="heading-text text-center py-3 mb-5">TodoList</h3>
-          <div>
-                <li>{% upper_case 'Количество созданных задач:' %} {{todo_count}}</li>
-          </div>
+            <div class="shadow border-bottom m-0 p-0">
+                <div class="d-flex justify-content-around">
+                    <h6 class="lead fw-bold m-1 p-2">Tasks <i class="btn btn-sm btn-dark bg-opacity-50 badge rounded-pill">{{ task_count }}</i>:</h6>
+                    <a class="text-decoration-none btn btn-sm btn-outline-success m-1 p-2" href="{% url 'my_todo_create' %}">
+                        <i class="fa-solid fa-circle-plus m-0 p-1"></i>
+                        Create new task
+                    </a>
+                </div>
+            </div>
 
-          <div>
+          <div class="m-1 p-1">
             {% include 'app_heroku/components/paginator.html' %}
           </div>
             <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 justify-content-center">
 
                 {% if not page %}
                     <div class="text-center">
-                        No data!
+                        {% include 'app_heroku/components/aborted.html' %}
                     </div>
                 {% else %}
                     {% for i in page %}
